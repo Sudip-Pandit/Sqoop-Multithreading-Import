@@ -34,7 +34,7 @@ This repository gives the clear explanation/steps on how to change the --m 1 in 
 
      hadoop fs -ls /user/cloudera/mapper_data ==>( One part File)
 
-# Go to the edge node a
+# Go to the edge node and run sqoop import command
      
      sqoop import \
      --connect jdbc:mysql://localhost/test \
@@ -46,16 +46,19 @@ This repository gives the clear explanation/steps on how to change the --m 1 in 
      --target-dir /user/cloudera/mapper_data      
 
 # Go to the HDFS 
-hadoop fs -ls /user/cloudera/mapper_data ==> It gives TWO Part  Files
+
+     hadoop fs -ls /user/cloudera/mapper_data ==> It gives TWO Part  Files
 
 # Go to the edge node and run the following command (sqoop import)
-sqoop import \
---connect jdbc:mysql://localhost/test \
---username root \
---password <> \
---table customer_mapper \
---split-by custid  \
---delete-target-dir \
---target-dir /user/cloudera/mapper_data      
+     
+     sqoop import \
+     --connect jdbc:mysql://localhost/test \
+     --username root \
+     --password <> \
+     --table customer_mapper \
+     --split-by custid  \
+     --delete-target-dir \
+     --target-dir /user/cloudera/mapper_data      
 
+# Go to the HDFS and run the following command
 hadoop fs -ls /user/cloudera/mapper_data ===> It gives FOUR or FIVE Part Files
